@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import application.apps.Finder;
 import dbModels.Author;
+import dbModels.Desk;
 import dbModels.auth.Employee;
 import dbModels.auth.Person;
 
@@ -152,6 +153,7 @@ public abstract class ConsoleController {
 			searchEmployee();
 			break;
 		case 2:
+			searchDesk();
 			break;
 		case 3:
 			break;
@@ -194,6 +196,19 @@ public abstract class ConsoleController {
 	}
 	
 	public static void searchDesk(){
+		System.out.println("Please enter the name of the desk");
 		
+		kbReader = new Scanner(System.in);
+		String deskName = kbReader.nextLine();
+		
+		Desk desk = null;
+		try {
+			desk = Finder.searchDeskInfo("name='" + deskName + "'").get(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(desk);
 	}
 }

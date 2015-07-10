@@ -53,4 +53,8 @@ public class Desk {
 		Statement statement = Main.connection.createStatement();
 		statement.execute("insert into library.desk (id, name) values (" + this.id + ", '" + this.name + "');");
 	}
+	
+	public String toString(){
+		return this.name;
+	}
 }

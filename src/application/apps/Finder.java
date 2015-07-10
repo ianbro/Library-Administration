@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import dbModels.Author;
 import dbModels.Book;
+import dbModels.Desk;
 import dbModels.auth.Employee;
 import dbModels.auth.Person;
 import application.Main;
@@ -62,6 +63,17 @@ public abstract class Finder {
 		while(myResult.next()){
 			System.out.println("Loading person with id: " + myResult.getInt("id"));
 			results.add(Person.get(myResult.getInt("id")));
+		}
+		return results;
+	}
+	
+	public static ArrayList<Desk> searchDeskInfo(String condition) throws SQLException{
+		Statement statement = Main.connection.createStatement();
+		ResultSet myResult = statement.executeQuery("select id from library.desk where " + condition + ";");
+		ArrayList<Desk> results = new ArrayList<Desk>();
+		while(myResult.next()){
+			System.out.println("Loading desk with id: " + myResult.getInt("id"));
+			results.add(Desk.get(myResult.getInt("id")));
 		}
 		return results;
 	}
