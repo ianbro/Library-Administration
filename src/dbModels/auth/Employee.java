@@ -28,13 +28,14 @@ public class Employee{
 		Statement statement = Main.connection.createStatement();
 		ResultSet myResult = statement.executeQuery("select * from library.employee where id=" + id + ";");
 		Employee retVal = new Employee();
+		myResult.next();
 		retVal.salary = myResult.getDouble("salary");
 		retVal.id = id;
 		retVal.personid = myResult.getInt("personid");
 		
 		Storage.employees.add(retVal);
 		
-		System.out.println("loaded person: " + Person.get(id).firstName + " " + Person.get(id).lastName + " succesfully.");
+		System.out.println("loaded employee: " + Person.get(id).firstName + " " + Person.get(id).lastName + " succesfully.");
 		return retVal;
 	}
 	

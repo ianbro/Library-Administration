@@ -70,4 +70,8 @@ public class Person {
 		Person retVal = new Person(id, firstName, lastName, birthDate, email, card);
 		return retVal;
 	}
+	
+	public String toString(){
+		return this.firstName + " " + this.lastName;
+	}
 }

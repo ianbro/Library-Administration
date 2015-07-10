@@ -35,7 +35,9 @@ public class Main {
 	public static void main(String[] args) throws SQLException, FileNotFoundException, ParseException{
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "saline54");
 		user = ConsoleController.login();
-		ConsoleController.mainMenu();
+		while(true){
+			ConsoleController.mainMenu();
+		}
 	}
 	
 	public static void checkinBook(String isbn){

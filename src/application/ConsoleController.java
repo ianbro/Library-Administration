@@ -73,9 +73,10 @@ public abstract class ConsoleController {
 			searchBook();
 			break;
 		case 4:
+			showAdministrationMenu();
 			break;
 		default:
-			System.out.println("Sorry, please enter a valid choice.");
+			System.out.println("Please enter a valid number 1-4.");
 			break;
 		}
 	}
@@ -128,5 +129,71 @@ public abstract class ConsoleController {
 		System.out.println("Please enter the isbn of the book");
 		kbReader = new Scanner(System.in);
 		return kbReader.next();
+	}
+	
+	public static void showAdministrationMenu(){
+		System.out.println("Administration Menu(Type corosponding number):");
+		System.out.println("1.	Search for Employee");
+		System.out.println("2.	Search for Desk");
+		System.out.println("3.	New Employee");
+		System.out.println("4.	New Customer");
+		System.out.println("5.	New Book");
+		System.out.println("6.	New Author");
+		
+		kbReader = new Scanner(System.in);
+		int choice = kbReader.nextInt();
+		
+		runAdminChoice(choice);
+	}
+	
+	public static void runAdminChoice(int choice){
+		switch(choice){
+		case 1:
+			searchEmployee();
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		default:
+			System.out.println("Please enter a valid number 1-6.");
+		}
+	}
+	
+	public static void searchEmployee(){
+		System.out.println("Please enter the name of the employee.");
+		kbReader = new Scanner(System.in);
+		String name = kbReader.nextLine();
+		
+		String nameFirst = name.split("\\s")[0];
+		String nameLast = name.split("\\s")[1];
+		
+		Person employeePerson = null;
+		try {
+			employeePerson = Finder.searchPersonInfo("lastName='" + nameLast + "' and firstName='" + nameFirst + "'").get(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Employee emp = null;
+		try {
+			emp = Finder.searchEmployeeInfo("personid=" + employeePerson.id).get(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(emp);
+	}
+	
+	public static void searchDesk(){
+		
 	}
 }
