@@ -21,6 +21,8 @@ import application.apps.Storage;
 public class Employee{
 
 	public double salary;
+	public String username;
+	public String password;
 	public int id;
 	public int personid;
 	
@@ -30,12 +32,14 @@ public class Employee{
 		Employee retVal = new Employee();
 		myResult.next();
 		retVal.salary = myResult.getDouble("salary");
+		retVal.username = myResult.getString("username");
+		retVal.password = myResult.getString("password");
 		retVal.id = id;
 		retVal.personid = myResult.getInt("personid");
 		
 		Storage.employees.add(retVal);
 		
-		System.out.println("loaded employee: " + Person.get(id).firstName + " " + Person.get(id).lastName + " succesfully.");
+		System.out.println("loaded employee: " + Person.get(retVal.personid).firstName + " " + Person.get(retVal.personid).lastName + " succesfully.");
 		return retVal;
 	}
 	
@@ -58,7 +62,8 @@ public class Employee{
 	
 	public void save() throws SQLException{
 		Statement statement = Main.connection.createStatement();
-		statement.execute("insert into library.employee (salary, id, personid) values (" + this.salary + ", " + this.id + ", " + this.personid + ");");
+		this.id = Storage.getAllEmployees().size() + 1;
+		statement.execute("insert into library.employee (salary, username, password, id, personid) values (" + this.salary + ", '" + this.username + "', '" + this.password + "', " + this.id + ", " + this.personid + ");");
 	}
 	
 	public String toString(){
@@ -69,7 +74,7 @@ public class Employee{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return p.toString() + "(" + this.id + ")";
+		return p.toString() + "(" + this.username + ")";
 	}
 	
 	public double addToSalary(double amount){

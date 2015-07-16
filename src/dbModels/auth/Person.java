@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import application.Main;
+import application.apps.Storage;
 
 /**
  * @author Ian
@@ -35,6 +36,15 @@ public class Person {
 		this.card = card;
 	}
 	
+	public Person(String firstName, String lastName, Date date, String email, Card card) throws SQLException{
+		this.id = Storage.getAllPeople().size() + 1;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = date;
+		this.email = email;
+		this.card = card;
+	}
+
 	public void save() throws SQLException{
 		Statement statement = Main.connection.createStatement();
 		statement.execute("insert into library.person (id, firstName, lastName, birthDate, email, cardid) values ('" + this.id + "', '" + this.firstName + "', '" + this.lastName + "', '" + this.birthDate.toString() + "', '" + this.email + "', " + this.card.id + " );");

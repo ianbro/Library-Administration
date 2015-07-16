@@ -29,12 +29,14 @@ import dbModels.auth.Person;
  */
 public class Main {
 
-	public static Person user;
+	public static Person user = null;
 	public static Connection connection;
 	
 	public static void main(String[] args) throws SQLException, FileNotFoundException, ParseException{
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "saline54");
-		user = ConsoleController.login();
+		while(user == null){
+			user = ConsoleController.login();
+		}
 		while(true){
 			ConsoleController.mainMenu();
 		}

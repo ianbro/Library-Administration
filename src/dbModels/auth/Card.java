@@ -20,6 +20,7 @@ import org.json.simple.parser.ParseException;
 
 import application.Main;
 import application.administration.CheckoutManagement;
+import application.apps.Storage;
 
 import com.mysql.fabric.xmlrpc.base.Array;
 
@@ -37,8 +38,14 @@ public class Card {
 	public Date expireDate;
 	public LinkedList<Book> books;
 	
-	public void save(Connection con) throws SQLException{
-		Statement statement = con.createStatement();
+	@SuppressWarnings("deprecation")
+	public void save() throws SQLException{
+		Statement statement = Main.connection.createStatement();
+		this.id = Storage.getAllCards().size() + 1;
+		
+		Date now = Date.valueOf((new java.util.Date()).toString());
+		now.setMonth(now.getMonth() + 1);
+		
 		statement.execute("insert into library.card (id, expiredDate) values (" + this.id + ", '" + this.expireDate.toString() + "');");
 	}
 	

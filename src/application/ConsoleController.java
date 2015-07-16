@@ -3,6 +3,7 @@
  */
 package application;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import application.apps.Finder;
 import dbModels.Author;
 import dbModels.Desk;
+import dbModels.auth.Card;
 import dbModels.auth.Employee;
 import dbModels.auth.Person;
 
@@ -31,11 +33,18 @@ public abstract class ConsoleController {
 		kbReader = new Scanner(System.in);
 		String username = kbReader.next();
 		
-		System.out.println("Password ");
+		System.out.println("Password: ");
 		kbReader = new Scanner(System.in);
 		String password = kbReader.next();
 		
-		Person retVal = Person.get(Integer.valueOf(username));
+		Employee emp = Finder.searchEmployeeInfo("username='" + username + "'").get(0);
+		Person retVal = null;
+		if(password.equals(emp.password)){
+			retVal = Person.get(emp.personid);
+		}
+		else{
+			System.out.println("Sorry, the password you entered is not correct.");
+		}
 		
 		return retVal;
 	}
@@ -156,8 +165,10 @@ public abstract class ConsoleController {
 			searchDesk();
 			break;
 		case 3:
+			newEmployee();
 			break;
 		case 4:
+			newCustomer();
 			break;
 		case 5:
 			break;
@@ -210,5 +221,78 @@ public abstract class ConsoleController {
 		}
 		
 		System.out.println(desk);
+	}
+	
+	public static void newEmployee(){
+		Employee retVal = null;
+		Person person = null;
+		System.out.print("Name:  ");
+			kbReader = new Scanner(System.in);
+			String name = kbReader.nextLine();
+			String firstName = name.split("\\s")[0];
+			String lastName = name.split("\\s")[1];
+			try{
+				person = Finder.searchPersonInfo("firstName='" + firstName + "' and lastName='" + lastName + "'").get(0);
+			} catch(IndexOutOfBoundsException e){
+				System.out.println("Make new Person");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(person == null){
+				System.out.print("Birth Date:  ");
+					kbReader = new Scanner(System.in);
+					Date date = Date.valueOf(kbReader.next());
+				System.out.print("Email:  ");
+					kbReader = new Scanner(System.in);
+					String email = kbReader.next();
+				try {
+					Card card = new Card();
+					card.save();
+					person = new Person(firstName, lastName, date, email, new Card());
+					person.save();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					person = Person.get(person.id);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		
+		System.out.print("Username:  ");
+			kbReader = new Scanner(System.in);
+			String username = kbReader.next();
+		System.out.print("Password:  ");
+			kbReader = new Scanner(System.in);
+			String password = kbReader.next();
+		System.out.print("Starting Salary:  ");
+			kbReader = new Scanner(System.in);
+			double salary = kbReader.nextDouble();
+			
+		retVal = new Employee();
+		retVal.personid = person.id;
+		retVal.username = username;
+		retVal.password = password;
+		retVal.salary = salary;
+		
+		try {
+			retVal.save();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void newCustomer(){
+		System.out.println("First Name:  ");
+		System.out.println("Last Name:  ");
+		System.out.println("Birth Date:  ");
+		System.out.println("Email:  ");
 	}
 }

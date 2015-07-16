@@ -3,11 +3,17 @@
  */
 package application.apps;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import application.Main;
 import dbModels.Author;
 import dbModels.Book;
+import dbModels.auth.Card;
 import dbModels.auth.Employee;
+import dbModels.auth.Person;
 
 /**
  * @author Ian
@@ -23,6 +29,10 @@ public abstract class Storage {
 	
 	public static ArrayList<Employee> employees = new ArrayList<Employee>();
 	
+	public static ArrayList<Person> people = new ArrayList<Person>();
+	
+	public static ArrayList<Card> cards = new ArrayList<Card>();
+	
 	public static String getAllStorage(){
 		String retVal = "";
 		
@@ -37,5 +47,50 @@ public abstract class Storage {
 		}
 		
 		return retVal;
+	}
+	
+	public static ArrayList<Person> getAllPeople() throws SQLException{
+		Statement statement = Main.connection.createStatement();
+		
+		ResultSet myResult = statement.executeQuery("select id from library.person");
+		
+		if(people == null){
+			people = new ArrayList<Person>();
+		}
+		
+		while(myResult.next()){
+			people.add(Person.get(myResult.getInt("id")));
+		}
+		
+		return people;
+	}
+	
+	public static ArrayList<Employee> getAllEmployees() throws SQLException{
+		Statement statement = Main.connection.createStatement();
+		
+		ResultSet myResult = statement.executeQuery("select id from library.employee");
+		
+		if(employees == null){
+			employees = new ArrayList<Employee>();
+		}
+		
+		while(myResult.next()){
+			employees.add(Employee.get(myResult.getInt("id")));
+		}
+		
+		return employees;
+	}
+	
+	public static ArrayList<Card> getAllCards() throws SQLException{
+		Statement statement = Main.connection.createStatement();
+		
+		people = getAllPeople();
+		
+		cards = new ArrayList<Card>();
+		for(Person p: people){
+			cards.add(p.card);
+		}
+		
+		return cards;
 	}
 }
