@@ -38,15 +38,25 @@ public class Card {
 	public Date expireDate;
 	public LinkedList<Book> books;
 	
+	public Card() throws SQLException{
+		this.id = Storage.getAllCards().size() + 1;
+		
+		Date now = new Date(Date.parse(new java.util.Date().toString()));
+		now.setMonth(now.getYear() + 2);
+		
+		this.expireDate = now;
+	}
+	
+	public Card(int id, Date expireDate) throws SQLException{
+		this.id = id;
+		this.expireDate = expireDate;
+	}
+	
 	@SuppressWarnings("deprecation")
 	public void save() throws SQLException{
 		Statement statement = Main.connection.createStatement();
-		this.id = Storage.getAllCards().size() + 1;
 		
-		Date now = Date.valueOf((new java.util.Date()).toString());
-		now.setMonth(now.getMonth() + 1);
-		
-		statement.execute("insert into library.card (id, expiredDate) values (" + this.id + ", '" + this.expireDate.toString() + "');");
+		statement.execute("insert into library.card (id, expireDate) values (" + this.id + ", '" + this.expireDate.toString() + "');");
 	}
 	
 	public void update(ArrayList<Object[]> args) throws SQLException{
@@ -70,9 +80,7 @@ public class Card {
 		Statement statement = Main.connection.createStatement();
 		ResultSet myResult = statement.executeQuery("select expireDate from library.card where id=" + id + ";");
 		myResult.next();
-		Card retVal = new Card();
-		retVal.id = id;
-		retVal.expireDate = myResult.getDate("expireDate");
+		Card retVal = new Card(id, myResult.getDate("expireDate"));
 		
 		return retVal;
 	}

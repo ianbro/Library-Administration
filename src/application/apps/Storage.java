@@ -93,4 +93,21 @@ public abstract class Storage {
 		
 		return cards;
 	}
+	
+	public static ArrayList<Author> getAllAuthors() throws SQLException{
+		Statement statement = Main.connection.createStatement();
+		
+		ResultSet myResult = statement.executeQuery("select id from library.author");
+		
+		if(authors == null){
+			authors = new ArrayList<Author>();
+		}
+		
+		while(myResult.next()){
+			System.out.println(myResult.getInt("id"));
+			authors.add(Author.get(myResult.getInt("id")));
+		}
+		
+		return authors;
+	}
 }

@@ -173,6 +173,7 @@ public abstract class ConsoleController {
 		case 5:
 			break;
 		case 6:
+			newAuthor();
 			break;
 		default:
 			System.out.println("Please enter a valid number 1-6.");
@@ -250,7 +251,7 @@ public abstract class ConsoleController {
 				try {
 					Card card = new Card();
 					card.save();
-					person = new Person(firstName, lastName, date, email, new Card());
+					person = new Person(firstName, lastName, date, email, card);
 					person.save();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -291,8 +292,55 @@ public abstract class ConsoleController {
 	
 	public static void newCustomer(){
 		System.out.println("First Name:  ");
+			kbReader = new Scanner(System.in);
+			String nameFirst = kbReader.next();
 		System.out.println("Last Name:  ");
+			kbReader = new Scanner(System.in);
+			String nameLast = kbReader.next();
 		System.out.println("Birth Date:  ");
+			kbReader = new Scanner(System.in);
+			String dateString = kbReader.next();
+			System.out.println(dateString);
+			java.util.Date toParse = new java.util.Date(dateString);
+			long toParseLong = toParse.UTC(toParse.getYear(), toParse.getMonth(), toParse.getDate(), 1, 0, 0);
+			Date birthDate = new Date(toParseLong);
 		System.out.println("Email:  ");
+			kbReader = new Scanner(System.in);
+			String email = kbReader.next();
+		Card card = null;
+		try {
+			card = new Card();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
+		Person toAdd;
+		try {
+			card.save();
+			toAdd = new Person(nameFirst, nameLast, birthDate, email, card);
+			toAdd.save();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void newAuthor(){
+		System.out.println("First Name:  ");
+			kbReader = new Scanner(System.in);
+			String firstName = kbReader.next();
+		System.out.println("Last Name: ");
+			kbReader = new Scanner(System.in);
+			String lastName = kbReader.next();
+			
+		Author toAdd;
+		try {
+			toAdd = new Author(firstName + " " + lastName);
+			toAdd.save();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -24,6 +24,16 @@ public class Author {
 	public String lastName;
 	public ArrayList<Book> books;
 	
+	public Author(){
+		
+	}
+	
+	public Author(String name) throws SQLException{
+		this.firstName = name.split("\\s")[0];
+		this.lastName = name.split("\\s")[1];
+		this.id = Storage.getAllAuthors().size() + 1;
+	}
+	
 	public static Author get(int authorid) throws SQLException{
 		Statement statement = Main.connection.createStatement();
 		ResultSet myResult = statement.executeQuery("select * from library.author where id=" + authorid + ";");
@@ -83,7 +93,7 @@ public class Author {
 	
 	public void save() throws SQLException{
 		Statement statement = Main.connection.createStatement();
-		statement.execute("insert into library.author (id, firstName, lastName) values (1, '" + this.firstName + "', '" + this.lastName + "');");
+		statement.execute("insert into library.author (id, firstName, lastName) values (" + this.id + ", '" + this.firstName + "', '" + this.lastName + "');");
 		System.out.println("Saved successfully");
 	}
 	
