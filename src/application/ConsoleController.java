@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import application.apps.Finder;
 import dbModels.Author;
+import dbModels.Book;
 import dbModels.Desk;
 import dbModels.auth.Card;
 import dbModels.auth.Employee;
@@ -323,6 +324,55 @@ public abstract class ConsoleController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public static void newBook(){
+		System.out.println("Title:  ");
+			kbReader = new Scanner(System.in);
+			String title = kbReader.next();
+		System.out.println("Subject:  ");
+			kbReader = new Scanner(System.in);
+			String subject = kbReader.next();
+		System.out.println("Author Name:  ");
+			kbReader = new Scanner(System.in);
+			String author = kbReader.next();
+			int authorid = 0;
+			try {
+				authorid = Finder.searchAuthorInfo("firstName=" + author.split("\\s")[0] + " and lastName=" + author.split("\\s")[1]).get(0).id;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("could not find author: " + author + ".");
+				return;
+			}
+		System.out.println("Genra:  ");
+			kbReader = new Scanner(System.in);
+			String genra = kbReader.next();
+		System.out.println("Publish Date(m(m)-d(d)-yyyy):  ");
+			kbReader = new Scanner(System.in);
+			String[] dateString = (kbReader.next()).split("-");
+			Date publishDate = new Date(Integer.valueOf(dateString[2]), Integer.valueOf(dateString[0]), Integer.valueOf(dateString[1]));
+		System.out.println("ISBN:  ");
+			kbReader = new Scanner(System.in);
+			String isbn = kbReader.next();
+		System.out.println("Call Number:  ");
+			kbReader = new Scanner(System.in);
+			String callNumber = kbReader.next();
+		System.out.println("Description:  ");
+			kbReader = new Scanner(System.in);
+			String description = kbReader.next();
+		System.out.println("Copies:  ");
+			kbReader = new Scanner(System.in);
+			int copies = kbReader.nextInt();
+			
+		Book toAdd = new Book(title, subject, authorid, genra, isbn, callNumber, publishDate, description, null, copies);
+		try {
+			toAdd.save();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("could not add book: " + title);
 		}
 	}
 	
