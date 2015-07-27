@@ -1,0 +1,11 @@
+#header {
+	-fx-background-color: black;
+}
+
+#sideBar {
+	-fx-background-color: #1919FF;
+}
+
+#sideBarContainer Button {
+	-fx-background-color: white;
+} 

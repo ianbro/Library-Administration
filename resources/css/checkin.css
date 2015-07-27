@@ -1,0 +1,7 @@
+#header-div {
+	-fx-background-color: #0099FF;
+}
+
+#header-div Label {
+	-fx-text-fill: white;
+}
