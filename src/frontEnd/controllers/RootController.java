@@ -5,6 +5,7 @@ package frontEnd.controllers;
 
 import java.io.IOException;
 
+import frontEnd.designs.classes.Catologue;
 import frontEnd.designs.classes.Checkin;
 import frontEnd.designs.classes.Checkout;
 import javafx.animation.FadeTransition;
@@ -134,7 +135,22 @@ public class RootController {
 	
 	public void searchReleased() {
 		btnHovered(search);
-		System.out.println("search");
+		showSearch();
+	}
+	
+	private void showSearch() {
+		contentPane.getChildren().clear();
+		Catologue toShow = null;
+		try {
+			toShow = new Catologue();
+			toShow.value.setPrefWidth(contentPane.getWidth());
+			toShow.value.setPrefHeight(contentPane.getHeight());
+			AnchorPane.setLeftAnchor(toShow.value.getChildren().get(0), (contentPane.getWidth()-305)/2);
+			AnchorPane.setTopAnchor(toShow.value.getChildren().get(0), (contentPane.getHeight()-200)/2);
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+		contentPane.getChildren().add(toShow.value);
 	}
 	
 	public void adminReleased() {

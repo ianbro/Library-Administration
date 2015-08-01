@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../../resources/css/catologue.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <FlowPane fx:id="searchContainer" prefHeight="110.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <FlowPane id="searchFieldContainer" fx:id="searchContainer" prefHeight="87.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <SplitPane dividerPositions="0.16666666666666666" prefHeight="28.0" prefWidth="296.0">
+            <SplitPane dividerPositions="0.16666666666666666" prefHeight="28.0" prefWidth="348.0">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -19,12 +19,12 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="titleField" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
-            <SplitPane dividerPositions="0.3125" layoutX="15.0" layoutY="15.0" prefHeight="28.0" prefWidth="194.0">
+            <SplitPane dividerPositions="0.3125" layoutX="15.0" layoutY="15.0" prefHeight="28.0" prefWidth="260.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -33,12 +33,12 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="publishedField" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </items>
             </SplitPane>
-            <SplitPane dividerPositions="0.3125" prefHeight="28.0" prefWidth="244.0">
+            <SplitPane dividerPositions="0.3125" prefHeight="28.0" prefWidth="260.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -47,12 +47,12 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="authorField" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </items>
             </SplitPane>
-            <SplitPane dividerPositions="0.3125" prefHeight="28.0" prefWidth="246.0">
+            <SplitPane dividerPositions="0.3125" prefHeight="28.0" prefWidth="260.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -61,12 +61,12 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="subject" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </items>
             </SplitPane>
-            <SplitPane dividerPositions="0.3125" prefHeight="28.0" prefWidth="256.0">
+            <SplitPane dividerPositions="0.3125" prefHeight="28.0" prefWidth="260.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -75,12 +75,15 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="genraField" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </items>
             </SplitPane>
-            <Pane prefHeight="28.0" prefWidth="234.0" />
+            <Pane id="extra-pane" prefHeight="28.0" prefWidth="260.0">
+               <children>
+                  <Button id="submit" fx:id="submit" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="256.0" text="Button" />
+               </children></Pane>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -88,6 +91,16 @@
       </FlowPane>
    </top>
    <center>
-      <AnchorPane fx:id="display" prefHeight="340.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="display" prefHeight="413.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane layoutX="150.0" layoutY="10.0" prefHeight="293.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane fx:id="bookListDisplay" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="490.0" />
+              </content>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </ScrollPane>
+         </children></AnchorPane>
    </center>
 </BorderPane>

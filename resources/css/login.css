@@ -1,0 +1,12 @@
+#loginPane {
+	-fx-border-color: black;
+}
+
+#loginPane Label {
+	-fx-background-color: #1919FF;
+	-fx-border-radius: 5%;
+}
+
+.fieldLabel {
+	-fx-background-color: white;
+}

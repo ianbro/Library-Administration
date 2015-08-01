@@ -22,6 +22,7 @@ import dbModels.Book;
 import dbModels.Desk;
 import dbModels.auth.Employee;
 import dbModels.auth.Person;
+import frontEnd.designs.classes.Login;
 import frontEnd.designs.classes.Root;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +45,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			BorderPane root = new Root().value;
+			BorderPane root = new Login().value;
 			mainScene = new Scene(root);
 			primaryStage.setScene(mainScene);
 		} catch (IOException e) {

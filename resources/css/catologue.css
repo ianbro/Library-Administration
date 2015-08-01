@@ -1,0 +1,12 @@
+Button {
+	-fx-background-color: white;
+}
+
+#searchFieldContainer {
+	-fx-border-color: black;
+	-fx-border-width: 2px;
+}
+
+#extra-pane {
+	-fx-background-color: lightgray;
+}
