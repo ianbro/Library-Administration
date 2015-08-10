@@ -1,0 +1,5 @@
+DB_PORT = 3306
+DB_DOMAIN = jdbc:mysql://localhost
+DB_USERNAME = root
+DB_PASSWORD = saline54
+SCHEMA_NAME = library

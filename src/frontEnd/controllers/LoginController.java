@@ -16,8 +16,10 @@ import frontEnd.designs.classes.Root;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 
 /**
  * @author Ian
@@ -27,6 +29,7 @@ import javafx.scene.control.TextField;
  */
 public class LoginController implements Initializable{
 	
+	public FlowPane errorMessage;
 	public Button login;
 	public TextField username;
 	public PasswordField password;
@@ -47,28 +50,28 @@ public class LoginController implements Initializable{
 		Employee emp = null;
 		try {
 			emp = Finder.searchEmployeeInfo("username='" + usersName + "'").get(0);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Person user = null;
-		System.out.println(emp.password);
-		if(usersPass.equals(emp.password)){
-			System.out.println("logged in");
-			try {
-				user = Person.get(emp.personid);
-				Main.user = user;
-				Main.mainScene.setRoot(new Root().value);;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			Person user = null;
+			if(usersPass.equals(emp.password)){
+				System.out.println("logged in");
+				try {
+					user = Person.get(emp.personid);
+					Main.user = user;
+					Main.mainScene.setRoot(new Root().value);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}
-		else{
-			//don't log in
+			else{
+				password.clear();
+				errorMessage.setVisible(true);
+			}
+		} catch (SQLException | IndexOutOfBoundsException e) {
+			password.clear();
+			errorMessage.setVisible(true);
 		}
 	}
 

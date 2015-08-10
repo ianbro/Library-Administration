@@ -46,7 +46,7 @@
                      <children>
                         <VBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="75.0" prefWidth="173.0">
                            <children>
-                              <Label style="-fx-background-color: white;" styleClass="fieldLabel" text="Username">
+                              <Label style="-fx-background-color: null;" styleClass="fieldLabel" text="Username">
                                  <VBox.margin>
                                     <Insets bottom="5.0" right="15.0" />
                                  </VBox.margin>
@@ -54,7 +54,7 @@
                                     <Font name="Arial Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label style="-fx-background-color: white;" styleClass="fieldLabel" text="Password">
+                              <Label style="-fx-background-color: null;" styleClass="fieldLabel" text="Password">
                                  <VBox.margin>
                                     <Insets right="15.0" top="5.0" />
                                  </VBox.margin>
@@ -62,6 +62,18 @@
                                     <Font name="Arial Bold" size="24.0" />
                                  </font>
                               </Label>
+                              <FlowPane fx:id="errorMessage" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #FF8080; -fx-border-color: black; -fx-border-radius: 2%;" visible="false">
+                                 <children>
+                                    <Label style="-fx-background-color: null;" text="!  The information you " />
+                                    <Label style="-fx-background-color: null;" text="entered is not correct." />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="35.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </FlowPane>
                            </children>
                         </VBox>
                         <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="168.0" prefWidth="175.0">

@@ -75,10 +75,20 @@ public abstract class ConsoleController {
 		
 		switch(choice){
 		case 1:
-			Main.checkinBook(getISBN());
+			try {
+				Main.checkinBook(getISBN(), getPerson());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case 2:
-			Main.checkoutBook(getISBN());
+			try {
+				Main.checkoutBook(getISBN(), getPerson());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case 3:
 			searchBook();
@@ -140,6 +150,12 @@ public abstract class ConsoleController {
 		System.out.println("Please enter the isbn of the book");
 		kbReader = new Scanner(System.in);
 		return kbReader.next();
+	}
+	
+	public static Person getPerson() throws SQLException{
+		System.out.println("Please enter the name of the person");
+		kbReader = new Scanner(System.in);
+		return Finder.searchPersonInfo("firstName=" + kbReader.next() + " and lastName=" + kbReader.next()).get(0);
 	}
 	
 	public static void showAdministrationMenu(){
