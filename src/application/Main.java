@@ -44,11 +44,6 @@ public class Main extends Application {
 	public static Person user = null;
 	public static Connection connection;
 	public static Scene mainScene;
-	private static String databaseName;
-	private static String dbUserName;
-	private static String dbPassword;
-	private static String dbPort;
-	private static String dbDomain;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -64,8 +59,10 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) throws SQLException, FileNotFoundException, ParseException{
-		getSettings();
-		connection = DriverManager.getConnection(dbDomain + ":" + dbPort + "/" + databaseName, dbUserName, dbPassword);
+		String[] db = Settings.DATABASES[Settings.DB_INDEX];
+		String dbConnection = "jdbc:mysql://" + db[3] + ":" + db[4] + "/" + db[0];
+		System.out.println(dbConnection);
+		connection = DriverManager.getConnection("jdbc:mysql://" + db[3] + ":" + db[4] + "/" + db[0], db[1], db[2]);
 		launch(args);
 	}
 	
@@ -84,44 +81,6 @@ public class Main extends Application {
 		} catch (FileNotFoundException | ParseException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	public static void getSettings(){
-		try {
-			Scanner settingsReader = new Scanner(new File("settings.txt"));
-			while(settingsReader.hasNextLine()){
-				String setting = settingsReader.nextLine();
-				String varName = setting.split("\\s=\\s")[0];
-				String varValue = setting.split("\\s=\\s")[1];
-				setSetting(varName, varValue);
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static void setSetting(String varName, String varValue){
-		switch(varName){
-		case "DB_PORT":
-			dbPort = varValue;
-			break;
-		case "DB_USERNAME":
-			dbUserName = varValue;
-			break;
-		case "DB_PASSWORD":
-			dbPassword = varValue;
-			break;
-		case "DB_DOMAIN":
-			dbDomain = varValue;
-			break;
-		case "SCHEMA_NAME":
-			databaseName = varValue;
-			break;
-		default:
-			System.out.println(varName + " is not a setting");
-			break;	
 		}
 	}
 }
