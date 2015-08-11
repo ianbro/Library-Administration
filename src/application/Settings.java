@@ -9,19 +9,17 @@ public class Settings {
 	// db_password
 	// db_host
 	// db_port	
+	// url root
 	static String[][] DATABASES = {
 			{
 				"library",
 				"root",
 				"saline54",
 				"localhost",
-				"3306"
-			},
-			{
-				"",
-				"",
+				"3306",
+				"jdbc:mysql:"
 			},
 	};
 	
-	static int DB_INDEX = 0;
+	static int DB_INDEX = 0; //index of which database to use(starts at 0)
 }

@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static Person user = null;
-	public static Connection connection;
+	public static Connection connection;	//jdbc:mysql://host/port/schemaname
 	public static Scene mainScene;
 	
 	@Override
@@ -60,9 +60,8 @@ public class Main extends Application {
 	
 	public static void main(String[] args) throws SQLException, FileNotFoundException, ParseException{
 		String[] db = Settings.DATABASES[Settings.DB_INDEX];
-		String dbConnection = "jdbc:mysql://" + db[3] + ":" + db[4] + "/" + db[0];
-		System.out.println(dbConnection);
-		connection = DriverManager.getConnection("jdbc:mysql://" + db[3] + ":" + db[4] + "/" + db[0], db[1], db[2]);
+		String dbConnectionString = db[5] + "//" + db[3] + ":" + db[4] + "/" + db[0];
+		connection = DriverManager.getConnection(dbConnectionString, db[1], db[2]);
 		launch(args);
 	}
 	
