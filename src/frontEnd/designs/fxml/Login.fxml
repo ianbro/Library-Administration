@@ -27,7 +27,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <BorderPane id="loginPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../resources/css/login.css" BorderPane.alignment="CENTER">
+            <BorderPane id="loginPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../static/css/login.css" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="100.0" left="400.0" right="400.0" top="100.0" />
                </BorderPane.margin>
@@ -106,7 +106,7 @@
       </BorderPane>
    </center>
    <stylesheets>
-      <URL value="@../../../../resources/css/root.css" />
-      <URL value="@../../../../resources/css/login.css" />
+      <URL value="@../../../../static/css/root.css" />
+      <URL value="@../../../../static/css/login.css" />
    </stylesheets>
 </BorderPane>

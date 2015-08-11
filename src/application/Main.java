@@ -53,7 +53,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			BorderPane root = new CatologueBookCard(new Book("title", "subject", 1, "genra", "isbn", "callNumber", new Date(1998, 4, 23), "description", new Date(1998, 4, 23), 1)).value;
+			BorderPane root = new Login().value;
 			mainScene = new Scene(root);
 			primaryStage.setScene(mainScene);
 		} catch (IOException e) {

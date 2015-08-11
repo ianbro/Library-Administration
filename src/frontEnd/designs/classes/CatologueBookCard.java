@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -34,14 +35,17 @@ public class CatologueBookCard {
 	
 	public CatologueBookCard(Book book) throws IOException{
 		this.value = FXMLLoader.load(getClass().getResource("/frontEnd/designs/fxml/CatologueBookCard.fxml"));
-		System.out.println(this.value.getChildren());
 		this.infoView = (ListView<String>) (this.value.getChildren().get(1));
 		this.image = (ImageView) (this.value.getChildren().get(0));
-		this.title = (Label) (this.value.getChildren().get(2));
+		this.title = (Label) ((AnchorPane) (this.value.getChildren().get(2))).getChildren().get(0);
 		this.book = book;
 		
 		this.setTitle(this.book.title);
-		this.setImage("book_generic.png");
+		try{
+			this.setImage(this.book.title + ".png");
+		} catch(NullPointerException e){
+			this.setImage("book_generic.png");
+		}
 		this.displayInfo();
 	}
 	
@@ -50,19 +54,18 @@ public class CatologueBookCard {
 	}
 	
 	public void setImage(String url){
-		System.out.println(Paths.get("resources/images/" + url).toString());
-		Image bookImage = new Image(Paths.get("resources/images/" + url).toString());
+		Image bookImage = new Image(this.getClass().getClassLoader().getResourceAsStream("resources/images/" + url));
 		image.setImage(bookImage);
 	}
 	
 	public void displayInfo(){
 		String author = this.book.author.toString();
-		String isbn = this.book.isbn;
+		String callNumber = "Call Number:  " + this.book.callNumber;
 		String publishDate = this.book.publishDate.toString();
-		String description = this.book.description;
+		String description = "Blurb:  " + this.book.description;
 		
 		String firstLine = "Author: " + author + ", Publised on: " + publishDate;
-		ObservableList<String> info = FXCollections.observableArrayList(firstLine, description, isbn);
+		ObservableList<String> info = FXCollections.observableArrayList(firstLine, description, callNumber);
 		
 		this.infoView.setItems(info);
 	}

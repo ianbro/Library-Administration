@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="173.0" prefWidth="895.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane prefHeight="173.0" prefWidth="1200.0" styleClass="cardCatologue" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -22,13 +21,17 @@
       <ListView fx:id="infoView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" prefHeight="33.0" prefWidth="5000.0" style="-fx-border-color: black; -fx-background-color: lightblue;" text="Book" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-         </padding>
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="title" contentDisplay="CENTER" graphicTextGap="6.0" prefHeight="33.0" style="-fx-border-color: black; -fx-background-color: lightblue;" text="Book" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="200.0" right="2.0" top="2.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
    </top>
 </BorderPane>

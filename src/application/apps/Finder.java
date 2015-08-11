@@ -25,10 +25,12 @@ public abstract class Finder {
 
 	public static ArrayList<Book> searchBookInfo(String condition) throws SQLException{
 		Statement statement = Main.connection.createStatement();
-		ResultSet myResult = statement.executeQuery("select isbn from library.book where " + condition + ";");
+		String sql = "select isbn from library.book b join library.author a on a.id=b.authorid where " + condition + ";";
+		System.out.println(sql);
+		ResultSet myResult = statement.executeQuery(sql);
 		ArrayList<Book> results = new ArrayList<Book>();
 		while(myResult.next()){
-			System.out.println("Loading book with ISBN: " + myResult.getInt("isbn"));
+			System.out.println("Loading book with ISBN: " + myResult.getString("isbn"));
 			results.add(Book.get(myResult.getString("isbn")));
 		}
 		return results;

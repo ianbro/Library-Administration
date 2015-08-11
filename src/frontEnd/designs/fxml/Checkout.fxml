@@ -52,7 +52,7 @@
                   </VBox>
                </children>
             </HBox>
-            <AnchorPane id="header-div" fx:id="header" layoutX="80.0" layoutY="29.0" prefHeight="21.0" prefWidth="231.0" stylesheets="@../../../../resources/css/checkin.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane id="header-div" fx:id="header" layoutX="80.0" layoutY="29.0" prefHeight="21.0" prefWidth="231.0" stylesheets="@../../../../static/css/checkin.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label alignment="CENTER" layoutX="65.0" layoutY="1.0" text="Book Checkout" textAlignment="CENTER" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0">
                      <font>

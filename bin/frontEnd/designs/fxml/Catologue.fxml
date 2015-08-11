@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../../resources/css/catologue.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../../static/css/catologue.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontEnd.controllers.CatologueController">
    <top>
       <FlowPane id="searchFieldContainer" fx:id="searchContainer" prefHeight="87.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
@@ -61,7 +61,7 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TextField fx:id="subject" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="subjectField" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </items>
@@ -82,7 +82,7 @@
             </SplitPane>
             <Pane id="extra-pane" prefHeight="28.0" prefWidth="260.0">
                <children>
-                  <Button id="submit" fx:id="submit" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="256.0" text="Button" />
+                  <Button id="submit" fx:id="submit" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#searched" prefHeight="25.0" prefWidth="256.0" text="Button" />
                </children></Pane>
          </children>
          <padding>
@@ -93,9 +93,9 @@
    <center>
       <AnchorPane fx:id="display" prefHeight="413.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane layoutX="150.0" layoutY="10.0" prefHeight="293.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane layoutX="150.0" layoutY="10.0" prefHeight="293.0" prefWidth="340.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane fx:id="bookListDisplay" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="490.0" />
+                <VBox fx:id="bookListDisplay" minHeight="0.0" minWidth="0.0" />
               </content>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
