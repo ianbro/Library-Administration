@@ -52,11 +52,11 @@ public class LoginController implements Initializable{
 			emp = Finder.searchEmployeeInfo("username='" + usersName + "'").get(0);
 			Person user = null;
 			if(usersPass.equals(emp.password)){
-				System.out.println("logged in");
 				try {
 					user = Person.get(emp.personid);
 					Main.user = user;
 					Main.mainScene.setRoot(new Root().value);
+					System.out.println("user: " + user + " logged in");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
